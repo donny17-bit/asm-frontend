@@ -96,6 +96,7 @@ export default function Dashboard() {
                 {/* <Text fontSize={"20"} fontWeight={"semibold"}>
                   Production Longterm
                 </Text> */}
+                {/* bagian kosong dikasih opsi pagination dibagi per 100, 1000, 10000, 100k, atau 1jt data */}
                 <Spacer />
                 <Button variant={"ghost"} colorScheme="teal" size={"md"}>
                   Download excel
