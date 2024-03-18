@@ -24,7 +24,13 @@ export default function Login() {
         height="100vh"
         width="100%"
       >
-        <Card width="60%" shadow="xl" border="1px" borderColor="gray.200">
+        <Card
+          width={["90%", "60%", "50%", "30%"]}
+          // h={"60%"}
+          shadow="xl"
+          border="1px"
+          borderColor="gray.200"
+        >
           <CardHeader fontWeight="bold" fontSize="xl" textAlign="center">
             eReport Sinarmas
           </CardHeader>
