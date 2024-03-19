@@ -28,9 +28,9 @@ import { LuArrowLeftFromLine } from "react-icons/lu";
 export default function Sidebar() {
   const [isOpen, setIsOpen] = useState(true);
 
-  const toggleSidebar = (e) => {
+  const toggleSidebar = () => {
     setIsOpen(!isOpen);
-    console.log(e);
+    console.log();
     console.log(isOpen);
   };
 
@@ -48,7 +48,7 @@ export default function Sidebar() {
         bgColor={"#ffede3"}
         // bgColor={"white"}
         // bgGradient="linear(to-b, #fc9356, #ffede3)"
-        width={isOpen ? [null, null, "30vw", "15vw"] : "50px"}
+        width={isOpen ? "250px" : "50px"}
         transition="width 0.3s"
       >
         <VStack
@@ -73,7 +73,7 @@ export default function Sidebar() {
             <Spacer />
             {/* hide button */}
             <Button
-              onClick={(e) => toggleSidebar(e)}
+              onClick={toggleSidebar}
               fontSize={"20"}
               // border={"1px solid black"}
               py={"3px"}
