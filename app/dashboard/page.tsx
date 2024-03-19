@@ -24,6 +24,8 @@ import { GrMoney } from "react-icons/gr";
 import { PiSignOutLight } from "react-icons/pi";
 import { FaRegFileExcel } from "react-icons/fa";
 import Sidebar from "../components/sidebar/sidebar";
+import Navbar from "../components/navbar/navbar";
+import TableComp from "../components/table/table";
 import { MdOutlineSimCardDownload } from "react-icons/md";
 import { LuArrowLeftFromLine } from "react-icons/lu";
 
@@ -32,30 +34,9 @@ export default function Dashboard() {
     <>
       <Flex>
         <Sidebar />
+        {/* canvas */}
         <VStack w="100%">
-          {/* navbar */}
-          <HStack h={"70px"} w={"100%"} p="20px">
-            {/* <Input
-              flex={0.5}
-              size={"md"}
-              placeholder="Cari no polis"
-              // borderColor={"gray.400"}
-              variant="filled"
-            /> */}
-            <Text fontSize={"20"} fontWeight={"semibold"}>
-              Production Longterm
-            </Text>
-            <Spacer />
-            <Text
-              // flex={1}
-              color={"gray.700"}
-              fontWeight={"normal"}
-              fontSize={"18"}
-            >
-              Welcome, Donny Wahyu
-            </Text>
-          </HStack>
-          {/* main */}
+          <Navbar />
           <VStack
             spacing={"10px"}
             bgColor="#F6F7F9"
@@ -71,6 +52,7 @@ export default function Dashboard() {
               border="1px"
               borderColor="gray.100"
               w={"inherit"}
+              // maxW={[null, null, null, "50vw", "50vw", "83vw"]}
               h={"100px"}
               p="20px"
             >
@@ -78,253 +60,8 @@ export default function Dashboard() {
                 Filter
               </Text>
             </Box>
-
             {/* table */}
-            <Box
-              bgColor="white"
-              borderRadius={"md"}
-              border="1px"
-              borderColor="gray.100"
-              pt={"10px"}
-              w={"inherit"}
-              maxW={"83vw"}
-              // overflowX={"auto"}
-            >
-              {/* <Box h={"100px"} bgColor={"white"}></Box> */}
-
-              <HStack mx={"20px"} mb="10px">
-                {/* <Text fontSize={"20"} fontWeight={"semibold"}>
-                  Production Longterm
-                </Text> */}
-                {/* bagian kosong dikasih opsi pagination dibagi per 100, 1000, 10000, 100k, atau 1jt data */}
-                <Spacer />
-                <Button variant={"ghost"} colorScheme="teal" size={"md"}>
-                  Download excel
-                  <Text fontSize={"x-large"}>
-                    <FaRegFileExcel />
-                  </Text>
-                  {/* <MdOutlineSimCardDownload /> */}
-                </Button>
-              </HStack>
-              <TableContainer
-                borderBottomRadius={"md"}
-                overflowY={"auto"}
-                overflowX={"auto"}
-                maxH={"780px"}
-              >
-                <Table variant="simple">
-                  <Thead
-                    bgColor={"#fcb890"}
-                    position="sticky"
-                    top="0"
-                    zIndex="sticky"
-                  >
-                    <Tr>
-                      <Th>To convert</Th>
-                      <Th>into</Th>
-                      <Th isNumeric>multiply by</Th>
-                      <Th>into</Th>
-                      <Th>into</Th>
-                      <Th>into</Th>
-                      <Th isNumeric>multiply by</Th>
-                      <Th isNumeric>multiply by</Th>
-                      <Th isNumeric>multiply by</Th>
-                      <Th isNumeric>multiply by</Th>
-                      <Th isNumeric>multiply by</Th>
-                      <Th isNumeric>multiply by</Th>
-                      <Th isNumeric>multiply by</Th>
-                    </Tr>
-                  </Thead>
-                  <Tbody>
-                    <Tr>
-                      <Td>inches</Td>
-                      <Td>millimetres (mm)</Td>
-                      <Td>millimetres (mm)</Td>
-                      <Td>millimetres (mm)</Td>
-                      <Td>millimetres (mm)</Td>
-                      <Td isNumeric>25.4</Td>
-                      <Td>millimetres (mm)</Td>
-                      <Td isNumeric>25.4</Td>
-                      <Td isNumeric>25.4</Td>
-                      <Td isNumeric>25.4</Td>
-
-                      <Td isNumeric>25.4</Td>
-                    </Tr>
-                    <Tr>
-                      <Td>inches</Td>
-                      <Td>millimetres (mm)</Td>
-                      <Td>millimetres (mm)</Td>
-                      <Td>millimetres (mm)</Td>
-                      <Td>millimetres (mm)</Td>
-                      <Td isNumeric>25.4</Td>
-                      <Td>millimetres (mm)</Td>
-                      <Td isNumeric>25.4</Td>
-                      <Td isNumeric>25.4</Td>
-                      <Td isNumeric>25.4</Td>
-                      <Td isNumeric>25.4</Td>
-                    </Tr>
-                    <Tr>
-                      <Td>inches</Td>
-                      <Td>millimetres (mm)</Td>
-                      <Td>millimetres (mm)</Td>
-                      <Td>millimetres (mm)</Td>
-                      <Td>millimetres (mm)</Td>
-                      <Td isNumeric>25.4</Td>
-                      <Td>millimetres (mm)</Td>
-                      <Td isNumeric>25.4</Td>
-                      <Td isNumeric>25.4</Td>
-                      <Td isNumeric>25.4</Td>
-                      <Td isNumeric>25.4</Td>
-                    </Tr>
-                    <Tr>
-                      <Td>inches</Td>
-                      <Td>millimetres (mm)</Td>
-                      <Td>millimetres (mm)</Td>
-                      <Td>millimetres (mm)</Td>
-                      <Td>millimetres (mm)</Td>
-                      <Td isNumeric>25.4</Td>
-                      <Td>millimetres (mm)</Td>
-                      <Td isNumeric>25.4</Td>
-                      <Td isNumeric>25.4</Td>
-                      <Td isNumeric>25.4</Td>
-                      <Td isNumeric>25.4</Td>
-                    </Tr>
-                    <Tr>
-                      <Td>inches</Td>
-                      <Td>millimetres (mm)</Td>
-                      <Td>millimetres (mm)</Td>
-                      <Td>millimetres (mm)</Td>
-                      <Td>millimetres (mm)</Td>
-                      <Td isNumeric>25.4</Td>
-                      <Td>millimetres (mm)</Td>
-                      <Td isNumeric>25.4</Td>
-                      <Td isNumeric>25.4</Td>
-                      <Td isNumeric>25.4</Td>
-                    </Tr>
-                    <Tr>
-                      <Td>inches</Td>
-                      <Td>millimetres (mm)</Td>
-                      <Td>millimetres (mm)</Td>
-                      <Td>millimetres (mm)</Td>
-                      <Td>millimetres (mm)</Td>
-                      <Td isNumeric>25.4</Td>
-                      <Td>millimetres (mm)</Td>
-                      <Td isNumeric>25.4</Td>
-                      <Td isNumeric>25.4</Td>
-                      <Td isNumeric>25.4</Td>
-                    </Tr>
-                    <Tr>
-                      <Td>inches</Td>
-                      <Td>millimetres (mm)</Td>
-                      <Td>millimetres (mm)</Td>
-                      <Td>millimetres (mm)</Td>
-                      <Td>millimetres (mm)</Td>
-                      <Td isNumeric>25.4</Td>
-                      <Td>millimetres (mm)</Td>
-                      <Td isNumeric>25.4</Td>
-                      <Td isNumeric>25.4</Td>
-                      <Td isNumeric>25.4</Td>
-                    </Tr>
-                    <Tr>
-                      <Td>inches</Td>
-                      <Td>millimetres (mm)</Td>
-                      <Td>millimetres (mm)</Td>
-                      <Td>millimetres (mm)</Td>
-                      <Td>millimetres (mm)</Td>
-                      <Td isNumeric>25.4</Td>
-                      <Td>millimetres (mm)</Td>
-                      <Td isNumeric>25.4</Td>
-                      <Td isNumeric>25.4</Td>
-                      <Td isNumeric>25.4</Td>
-                    </Tr>
-                    <Tr>
-                      <Td>inches</Td>
-                      <Td>millimetres (mm)</Td>
-                      <Td>millimetres (mm)</Td>
-                      <Td>millimetres (mm)</Td>
-                      <Td>millimetres (mm)</Td>
-                      <Td isNumeric>25.4</Td>
-                      <Td>millimetres (mm)</Td>
-                      <Td isNumeric>25.4</Td>
-                      <Td isNumeric>25.4</Td>
-                      <Td isNumeric>25.4</Td>
-                    </Tr>
-                    <Tr>
-                      <Td>inches</Td>
-                      <Td>millimetres (mm)</Td>
-                      <Td>millimetres (mm)</Td>
-                      <Td>millimetres (mm)</Td>
-                      <Td>millimetres (mm)</Td>
-                      <Td isNumeric>25.4</Td>
-                      <Td>millimetres (mm)</Td>
-                      <Td isNumeric>25.4</Td>
-                      <Td isNumeric>25.4</Td>
-                      <Td isNumeric>25.4</Td>
-                    </Tr>
-                    <Tr>
-                      <Td>inches</Td>
-                      <Td>millimetres (mm)</Td>
-                      <Td>millimetres (mm)</Td>
-                      <Td>millimetres (mm)</Td>
-                      <Td>millimetres (mm)</Td>
-                      <Td isNumeric>25.4</Td>
-                      <Td>millimetres (mm)</Td>
-                      <Td isNumeric>25.4</Td>
-                      <Td isNumeric>25.4</Td>
-                      <Td isNumeric>25.4</Td>
-                    </Tr>
-                    <Tr>
-                      <Td>inches</Td>
-                      <Td>millimetres (mm)</Td>
-                      <Td>millimetres (mm)</Td>
-                      <Td>millimetres (mm)</Td>
-                      <Td>millimetres (mm)</Td>
-                      <Td isNumeric>25.4</Td>
-                      <Td>millimetres (mm)</Td>
-                      <Td isNumeric>25.4</Td>
-                      <Td isNumeric>25.4</Td>
-                      <Td isNumeric>25.4</Td>
-                    </Tr>
-                    <Tr>
-                      <Td>inches</Td>
-                      <Td>millimetres (mm)</Td>
-                      <Td>millimetres (mm)</Td>
-                      <Td>millimetres (mm)</Td>
-                      <Td>millimetres (mm)</Td>
-                      <Td isNumeric>25.4</Td>
-                      <Td>millimetres (mm)</Td>
-                      <Td isNumeric>25.4</Td>
-                      <Td isNumeric>25.4</Td>
-                      <Td isNumeric>25.4</Td>
-                    </Tr>
-                    <Tr>
-                      <Td>inches</Td>
-                      <Td>millimetres (mm)</Td>
-                      <Td>millimetres (mm)</Td>
-                      <Td>millimetres (mm)</Td>
-                      <Td>millimetres (mm)</Td>
-                      <Td isNumeric>25.4</Td>
-                      <Td>millimetres (mm)</Td>
-                      <Td isNumeric>25.4</Td>
-                      <Td isNumeric>25.4</Td>
-                      <Td isNumeric>25.4</Td>
-                    </Tr>
-                    <Tr>
-                      <Td>inches</Td>
-                      <Td>millimetres (mm)</Td>
-                      <Td>millimetres (mm)</Td>
-                      <Td>millimetres (mm)</Td>
-                      <Td>millimetres (mm)</Td>
-                      <Td isNumeric>25.4</Td>
-                      <Td>millimetres (mm)</Td>
-                      <Td isNumeric>25.4</Td>
-                      <Td isNumeric>25.4</Td>
-                      <Td isNumeric>25.4</Td>
-                    </Tr>
-                  </Tbody>
-                </Table>
-              </TableContainer>
-            </Box>
+            <TableComp />
           </VStack>
         </VStack>
       </Flex>
