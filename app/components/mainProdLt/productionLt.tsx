@@ -1,3 +1,7 @@
+"use client";
+
+import { useState } from "react";
+
 import {
   VStack,
   Flex,
@@ -29,6 +33,11 @@ type data = {
 
 export default function ProductionLt(data: data) {
   const isOpen = data.isOpen;
+  const [isFilter, setIsFilter] = useState(true);
+
+  const toggleFilter = () => {
+    setIsFilter(!isFilter);
+  };
 
   return (
     <>
@@ -45,9 +54,9 @@ export default function ProductionLt(data: data) {
           // w="inherit"
         >
           {/* filter */}
-          <Filter />
+          <Filter isFilter={isFilter} toggleFilter={toggleFilter} />
           {/* table */}
-          <TableComp isOpen={isOpen} />
+          <TableComp isOpen={isOpen} isFilter={isFilter} />
         </Flex>
       </Flex>
     </>

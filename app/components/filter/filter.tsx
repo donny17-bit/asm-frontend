@@ -8,21 +8,27 @@ import {
   Input,
   FormControl,
   FormLabel,
-  FormErrorMessage,
-  FormHelperText,
   Flex,
   Divider,
   Center,
   Select,
+  Button,
+  IconButton,
 } from "@chakra-ui/react";
 // import DatePicker from "react-datepicker";
 // import "react-datepicker/dist/react-datepicker.css";
+import { IoIosArrowDown } from "react-icons/io";
+import { IoIosArrowUp } from "react-icons/io";
 
-export default function Filter() {
-  const [selectedDate, setSelectedDate] = useState(null);
-  const handleDateChange = (date: any) => {
-    setSelectedDate(date);
-  };
+type data = {
+  isFilter: boolean;
+  toggleFilter: any;
+};
+
+export default function Filter(data: data) {
+  const isFilter = data.isFilter;
+
+  const toggleFilter = data.toggleFilter;
 
   return (
     <Box
@@ -33,18 +39,37 @@ export default function Filter() {
       borderColor="gray.100"
       // w={"inherit"}
       // maxW={"inherit"}
-      // h="fit-content"
+      h={isFilter ? "fit-content" : "60px"}
       // maxW={[null, null, null, "50vw", "50vw", "83vw"]}
       //   h={"100px"}
       px="10px"
       py="10px"
+      transform={"height 1s ease-in-out"}
     >
-      <Text fontSize={"20"} fontWeight={"semibold"} ps="10px">
-        Filter
-      </Text>
-      <FormControl>
-        {/* parent */}
-
+      <Flex justify={"space-between"}>
+        <Text
+          textAlign={"center"}
+          fontSize={"20"}
+          fontWeight={"semibold"}
+          ps="10px"
+          pt="5px"
+        >
+          Filter
+        </Text>
+        <IconButton
+          onClick={toggleFilter}
+          me="10px"
+          variant={"ghost"}
+          isRound={true}
+          aria-label="Search database"
+          icon={<IoIosArrowDown />}
+          size="md"
+          _hover={{ color: "#FE5E37", bgColor: "gray.200" }}
+          _active={{ color: "#FE5E37", bgColor: "gray.200" }}
+          transform={isFilter ? "rotate(0deg)" : "rotate(180deg)"}
+        />
+      </Flex>
+      <FormControl opacity={isFilter ? 1 : 0}>
         <Flex h="fit-content">
           <Box
             // border={"1px"}

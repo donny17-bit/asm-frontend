@@ -25,10 +25,12 @@ import { IoIosArrowForward } from "react-icons/io";
 
 type data = {
   isOpen: boolean;
+  isFilter: boolean;
 };
 
 export default function TableComp(data: data) {
   const isOpen = data.isOpen;
+  const isFilter = data.isFilter;
 
   return (
     <Flex direction={"column"}>
@@ -90,7 +92,11 @@ export default function TableComp(data: data) {
           maxW={
             isOpen ? [null, "100%", "100%", "100%", "50vw", "82vw"] : "92vw"
           }
-          maxH={[null, null, "60vh", "50vh", "66vh"]}
+          maxH={
+            isFilter
+              ? [null, null, "60vh", "50vh", "66vh"]
+              : [null, null, "60vh", "50vh", "80vh"]
+          }
           // maxH={"780px"}
           // maxH="100"
         >
