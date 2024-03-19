@@ -2,7 +2,12 @@ import { Text, Spacer, HStack } from "@chakra-ui/react";
 
 export default function Navbar() {
   return (
-    <HStack h={"70px"} w={"100%"} p="20px">
+    <HStack
+      // flex="1"
+      h={"50px"}
+      w={"100%"}
+      p="20px"
+    >
       {/* <Input
               flex={0.5}
               size={"md"}

@@ -28,7 +28,8 @@ export default function Sidebar() {
         h="100vh"
         // boxShadow={"xl"}
         // bgColor={"#fc9356"}
-        bgColor={"#ffede3"}
+        // bgColor={"#ffede3"}
+        bgColor={"white"}
         // bgGradient="linear(to-b, #fc9356, #ffede3)"
       >
         <VStack
