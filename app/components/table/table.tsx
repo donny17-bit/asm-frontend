@@ -94,8 +94,8 @@ export default function TableComp(data: data) {
           }
           maxH={
             isFilter
-              ? [null, null, "60vh", "50vh", "66vh"]
-              : [null, null, "60vh", "50vh", "80vh"]
+              ? [null, null, "60vh", "50vh", "64vh"]
+              : [null, null, "60vh", "50vh", "78vh"]
           }
           // maxH={"780px"}
           // maxH="100"

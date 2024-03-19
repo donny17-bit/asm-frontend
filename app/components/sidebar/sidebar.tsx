@@ -16,6 +16,7 @@ import { PiSignOutLight } from "react-icons/pi";
 import { GoHome } from "react-icons/go";
 import { BsArrowBarLeft } from "react-icons/bs";
 import { LuArrowLeftFromLine } from "react-icons/lu";
+import { IoIosArrowBack } from "react-icons/io";
 
 type data = {
   isOpen: boolean;
@@ -37,8 +38,8 @@ export default function Sidebar(data: data) {
         h="100vh"
         // boxShadow={"xl"}
         // bgColor={"#fc9356"}
-        bgColor={"#ffede3"}
-        // bgColor={"white"}
+        // bgColor={"#ffede3"}
+        bgColor={"white"}
         // bgGradient="linear(to-b, #fc9356, #ffede3)"
         width={isOpen ? [null, null, "30vw", "15vw"] : "75px"}
         transition="width 0.3s"
@@ -51,49 +52,55 @@ export default function Sidebar(data: data) {
           spacing="3"
           // color={"#F6F7F9"}
         >
-          <Flex direction={isOpen ? "row" : "column"} w="100%" pb="5" px="5">
+          <Flex direction={isOpen ? "row" : "column"} w="100%" mb="5" px="5">
             {/* logo */}
             {/* <Flex> */}
-            <Text>
-              <Text
-                border={"1px solid black"}
-                // w={"90%"}
-                fontSize="xl"
-                fontWeight="bold"
-                textAlign={"left"}
-                color="gray.700"
-                transition="transform 0.3s, opacity 0.1s ease-in-out"
-                opacity={isOpen ? 1 : 0}
-                transform={isOpen ? "translateX(0)" : "translateX(-100%)"}
-              >
-                <GoHome /> eReport
-              </Text>
-            </Text>
+            {isOpen ? (
+              <>
+                <Text>
+                  <Text
+                    // w={"90%"}
+                    fontSize="xl"
+                    fontWeight="bold"
+                    textAlign={"left"}
+                    color="gray.700"
+                    transition="transform 0.3s, opacity 0.1s ease-in-out"
+                    // opacity={isOpen ? 1 : 0}
+                    transform={isOpen ? "translateX(0)" : "translateX(-100%)"}
+                  >
+                    eReport
+                  </Text>
+                </Text>
+              </>
+            ) : (
+              <></>
+            )}
+
             {/* </Flex> */}
 
             <Spacer />
             {/* hide button */}
             <Button
-              // w={"inherit"}
               onClick={toggleSidebar}
               fontSize={"20"}
-              // border={"1px solid black"}
+              variant={"link"}
               py={"3px"}
               pl={"3px"}
-              mr={"0px"}
-              _hover={{ cursor: "pointer", color: "#FE5E37" }}
-              // transition="transform 0.3s"
-              // opacity={isOpen ? 1 : 0}
-              // transform={isOpen ? "translateX(0)" : "translateX(-100%)"}
+              mr={"-10px"}
+              // _hover={{ cursor: "pointer", color: "#FE5E37" }}
+              _hover={{ cursor: "pointer", color: "black" }}
+              transition="transform 0.3s"
+              transform={isOpen ? "rotate(0deg)" : "rotate(180deg)"}
             >
-              <LuArrowLeftFromLine />
+              <IoIosArrowBack />
             </Button>
           </Flex>
-          <Divider
+          {/* <Divider
             color={"gray.400"}
             bgColor={"gray.400"}
+            // mt={"-9px"}
             // border={"1px"}
-          />
+          /> */}
           <Button
             w="90%"
             mt="5"
@@ -115,9 +122,9 @@ export default function Sidebar(data: data) {
               ps="2"
               w={"inherit"}
               fontSize={"18"}
-              transition="transform 0.3s, opacity 0.1s ease-in-out"
+              transition="transform 0.3s ease-in-out, opacity 0.1s ease-in-out"
               opacity={isOpen ? 1 : 0}
-              transform={isOpen ? "translateX(0)" : "translateX(-100%)"}
+              transform={isOpen ? "translateX(0)" : "translateX(-30px)"}
             >
               Dashboard
             </Text>
@@ -142,7 +149,7 @@ export default function Sidebar(data: data) {
               fontSize={"18"}
               transition="transform 0.3s, opacity 0.1s ease-in-out"
               opacity={isOpen ? 1 : 0}
-              transform={isOpen ? "translateX(0)" : "translateX(-100%)"}
+              transform={isOpen ? "translateX(0)" : "translateX(-30px)"}
             >
               Production
             </Text>
@@ -167,7 +174,7 @@ export default function Sidebar(data: data) {
               fontSize={"18"}
               transition="transform 0.3s, opacity 0.1s ease-in-out"
               opacity={isOpen ? 1 : 0}
-              transform={isOpen ? "translateX(0)" : "translateX(-100%)"}
+              transform={isOpen ? "translateX(0)" : "translateX(-30px)"}
             >
               Surplus
             </Text>
@@ -192,7 +199,7 @@ export default function Sidebar(data: data) {
               fontSize={"18"}
               transition="transform 0.3s, opacity 0.1s ease-in-out"
               opacity={isOpen ? 1 : 0}
-              transform={isOpen ? "translateX(0)" : "translateX(-100%)"}
+              transform={isOpen ? "translateX(0)" : "translateX(-30px)"}
             >
               Claim
             </Text>

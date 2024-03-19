@@ -4,7 +4,7 @@ export default function Navbar() {
   return (
     <HStack
       // flex="1"
-      h={"50px"}
+      h={"70px"}
       w={"100%"}
       p="20px"
     >
