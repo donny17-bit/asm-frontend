@@ -34,9 +34,10 @@ export default function Filter() {
       h="fit-content"
       // maxW={[null, null, null, "50vw", "50vw", "83vw"]}
       //   h={"100px"}
-      p="20px"
+      px="10px"
+      py="10px"
     >
-      <Text fontSize={"20"} fontWeight={"semibold"}>
+      <Text fontSize={"20"} fontWeight={"semibold"} ps="10px">
         Filter
       </Text>
       <FormControl>

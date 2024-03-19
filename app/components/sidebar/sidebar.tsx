@@ -1,3 +1,7 @@
+"use client";
+
+import { useState } from "react";
+
 import {
   VStack,
   Text,
@@ -16,7 +20,19 @@ import { GoHome } from "react-icons/go";
 import { BsArrowBarLeft } from "react-icons/bs";
 import { LuArrowLeftFromLine } from "react-icons/lu";
 
-export default function Sidebar() {
+type min = {
+  isOpen: boolean;
+  toggleBar: any;
+};
+
+export default function Sidebar(min: data) {
+  // const [isOpen, setIsOpen] = useState(true);
+
+  // const toggleSidebar = () => {
+  //   setIsOpen(!isOpen);
+  //   console.log(isOpen);
+  // };
+
   return (
     <>
       <VStack
@@ -24,22 +40,26 @@ export default function Sidebar() {
         // border="1px"
         // borderColor="gray.200"
         py="5"
-        w={[null, null, "30vw", "15vw"]}
+        // w={[null, null, "30vw", "15vw"]}
         h="100vh"
         // boxShadow={"xl"}
         // bgColor={"#fc9356"}
-        // bgColor={"#ffede3"}
-        bgColor={"white"}
+        bgColor={"#ffede3"}
+        // bgColor={"white"}
         // bgGradient="linear(to-b, #fc9356, #ffede3)"
+        width={min.isOpen ? [null, null, "30vw", "15vw"] : "50px"}
+        transition="width 0.3s"
       >
         <VStack
           pb="5"
-          w={[null, null, "30vw", "15vw"]}
+          w="inherit"
+          // w={[null, null, "30vw", "15vw"]}
           h="100vh"
           spacing="3"
           // color={"#F6F7F9"}
         >
           <HStack w="100%" pb="5" px="5">
+            {/* logo */}
             <Text
               w={"90%"}
               fontSize="2xl"
@@ -50,7 +70,9 @@ export default function Sidebar() {
               eReport
             </Text>
             <Spacer />
-            <Text
+            {/* hide button */}
+            <Button
+              onClick={min.toggleBar}
               fontSize={"20"}
               // border={"1px solid black"}
               py={"3px"}
@@ -59,7 +81,7 @@ export default function Sidebar() {
               _hover={{ cursor: "pointer", color: "#FE5E37" }}
             >
               <LuArrowLeftFromLine />
-            </Text>
+            </Button>
           </HStack>
           <Divider
             color={"gray.400"}
