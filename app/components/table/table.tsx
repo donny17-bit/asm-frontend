@@ -16,21 +16,27 @@ import {
   TableContainer,
   IconButton,
   Select,
+  Center,
+  Flex,
 } from "@chakra-ui/react";
 import { FaRegFileExcel } from "react-icons/fa";
 import { IoIosArrowBack } from "react-icons/io";
 import { IoIosArrowForward } from "react-icons/io";
 
-export default function TableComp() {
+type data = {
+  isOpen: boolean;
+};
+
+export default function TableComp(data: data) {
+  const isOpen = data.isOpen;
+
   return (
-    <>
+    <Flex direction={"column"}>
       <Box
         mt="10px"
         // flex="1"
         bgColor="white"
         borderRadius={"md"}
-        border="1px"
-        borderColor="gray.100"
         pt={"10px"}
         w={"100%"}
         h="fit-content"
@@ -39,8 +45,6 @@ export default function TableComp() {
         // maxW={"82vw"} // nnti diganti
         // overflowX={"auto"}
       >
-        {/* <Box h={"100px"} bgColor={"white"}></Box> */}
-
         <HStack mx={"20px"} mb="10px">
           <IconButton
             isRound={true}
@@ -61,34 +65,34 @@ export default function TableComp() {
           <Text fontSize={"15"} fontWeight={"normal"} textColor="gray.600">
             Showing 1-10000 row of 512031
           </Text>
-          {/* <Box> */}
           <Select w="200px" size="sm" variant="filled" borderRadius="lg">
             <option value="option1">1000</option>
             <option value="option2">10.000</option>
             <option value="option3">100.000</option>
             <option value="option3">1.000.000</option>
           </Select>
-          {/* </Box> */}
           <Spacer />
           <Button variant={"ghost"} colorScheme="teal" size={"md"}>
             Download excel
             <Text fontSize={"x-large"}>
               <FaRegFileExcel />
             </Text>
-            {/* <MdOutlineSimCardDownload /> */}
           </Button>
         </HStack>
-
-        {/* <Box w={"100%"}> */}
+      </Box>
+      <Center bgColor={"white"}>
         <TableContainer
           borderBottomRadius={"md"}
-          overflowY={"auto"}
           overflowX={"auto"}
-          w="inherit"
+          overflowY={"auto"}
+          // w="inherit"
           // maxW="inherit"
-          maxW={[null, "100%", "100%", "100%", "50vw", "83vw"]}
-          maxH={[null, null, "60vh", "50vh", "52vh"]}
-          //   maxH={"780px"}
+          maxW={
+            isOpen ? [null, "100%", "100%", "100%", "50vw", "82vw"] : "92vw"
+          }
+          maxH={[null, null, "60vh", "50vh", "66vh"]}
+          // maxH={"780px"}
+          // maxH="100"
         >
           <Table variant="simple">
             <Thead
@@ -104,6 +108,9 @@ export default function TableComp() {
                 <Th>into</Th>
                 <Th>into</Th>
                 <Th>into</Th>
+                <Th isNumeric>multiply by</Th>
+                <Th isNumeric>multiply by</Th>
+                <Th isNumeric>multiply by</Th>
                 <Th isNumeric>multiply by</Th>
                 <Th isNumeric>multiply by</Th>
                 <Th isNumeric>multiply by</Th>
@@ -302,8 +309,7 @@ export default function TableComp() {
             </Tbody>
           </Table>
         </TableContainer>
-        {/* </Box> */}
-      </Box>
-    </>
+      </Center>
+    </Flex>
   );
 }

@@ -13,7 +13,7 @@ import {
   Divider,
   HStack,
 } from "@chakra-ui/react";
-import Sidebar from "../components/sideBarDemo/sidebar";
+import Sidebar from "../components/sideBarDemo/sidebarDemo";
 import { HiOutlineNewspaper } from "react-icons/hi2";
 import { VscGraph } from "react-icons/vsc";
 import { GrMoney } from "react-icons/gr";

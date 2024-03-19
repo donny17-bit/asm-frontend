@@ -1,7 +1,3 @@
-"use client";
-
-import { useState } from "react";
-
 import {
   VStack,
   Text,
@@ -11,6 +7,7 @@ import {
   Box,
   Divider,
   HStack,
+  Flex,
 } from "@chakra-ui/react";
 import { HiOutlineNewspaper } from "react-icons/hi2";
 import { VscGraph } from "react-icons/vsc";
@@ -20,18 +17,14 @@ import { GoHome } from "react-icons/go";
 import { BsArrowBarLeft } from "react-icons/bs";
 import { LuArrowLeftFromLine } from "react-icons/lu";
 
-type min = {
+type data = {
   isOpen: boolean;
-  toggleBar: any;
+  toggleSidebar: any;
 };
 
-export default function Sidebar(min: data) {
-  // const [isOpen, setIsOpen] = useState(true);
-
-  // const toggleSidebar = () => {
-  //   setIsOpen(!isOpen);
-  //   console.log(isOpen);
-  // };
+export default function Sidebar(data: data) {
+  const isOpen = data.isOpen;
+  const toggleSidebar = data.toggleSidebar;
 
   return (
     <>
@@ -47,7 +40,7 @@ export default function Sidebar(min: data) {
         bgColor={"#ffede3"}
         // bgColor={"white"}
         // bgGradient="linear(to-b, #fc9356, #ffede3)"
-        width={min.isOpen ? [null, null, "30vw", "15vw"] : "50px"}
+        width={isOpen ? [null, null, "30vw", "15vw"] : "75px"}
         transition="width 0.3s"
       >
         <VStack
@@ -58,31 +51,44 @@ export default function Sidebar(min: data) {
           spacing="3"
           // color={"#F6F7F9"}
         >
-          <HStack w="100%" pb="5" px="5">
+          <Flex direction={isOpen ? "row" : "column"} w="100%" pb="5" px="5">
             {/* logo */}
-            <Text
-              w={"90%"}
-              fontSize="2xl"
-              fontWeight="bold"
-              textAlign={"left"}
-              color="gray.700"
-            >
-              eReport
+            {/* <Flex> */}
+            <Text>
+              <Text
+                border={"1px solid black"}
+                // w={"90%"}
+                fontSize="xl"
+                fontWeight="bold"
+                textAlign={"left"}
+                color="gray.700"
+                transition="transform 0.3s, opacity 0.1s ease-in-out"
+                opacity={isOpen ? 1 : 0}
+                transform={isOpen ? "translateX(0)" : "translateX(-100%)"}
+              >
+                <GoHome /> eReport
+              </Text>
             </Text>
+            {/* </Flex> */}
+
             <Spacer />
             {/* hide button */}
             <Button
-              onClick={min.toggleBar}
+              // w={"inherit"}
+              onClick={toggleSidebar}
               fontSize={"20"}
               // border={"1px solid black"}
               py={"3px"}
               pl={"3px"}
               mr={"0px"}
               _hover={{ cursor: "pointer", color: "#FE5E37" }}
+              // transition="transform 0.3s"
+              // opacity={isOpen ? 1 : 0}
+              // transform={isOpen ? "translateX(0)" : "translateX(-100%)"}
             >
               <LuArrowLeftFromLine />
             </Button>
-          </HStack>
+          </Flex>
           <Divider
             color={"gray.400"}
             bgColor={"gray.400"}
@@ -90,7 +96,7 @@ export default function Sidebar(min: data) {
           />
           <Button
             w="90%"
-            mt="6"
+            mt="5"
             variant="ghost"
             color="gray.700"
             justifyContent="left"
@@ -104,7 +110,15 @@ export default function Sidebar(min: data) {
               </Text>
             }
           >
-            <Text ps="2" fontSize={"18"}>
+            <Text
+              textAlign={"left"}
+              ps="2"
+              w={"inherit"}
+              fontSize={"18"}
+              transition="transform 0.3s, opacity 0.1s ease-in-out"
+              opacity={isOpen ? 1 : 0}
+              transform={isOpen ? "translateX(0)" : "translateX(-100%)"}
+            >
               Dashboard
             </Text>
           </Button>
@@ -123,7 +137,13 @@ export default function Sidebar(min: data) {
               </Text>
             }
           >
-            <Text ps="2" fontSize={"18"}>
+            <Text
+              ps="2"
+              fontSize={"18"}
+              transition="transform 0.3s, opacity 0.1s ease-in-out"
+              opacity={isOpen ? 1 : 0}
+              transform={isOpen ? "translateX(0)" : "translateX(-100%)"}
+            >
               Production
             </Text>
           </Button>
@@ -142,7 +162,13 @@ export default function Sidebar(min: data) {
               </Text>
             }
           >
-            <Text ps="2" fontSize={"18"}>
+            <Text
+              ps="2"
+              fontSize={"18"}
+              transition="transform 0.3s, opacity 0.1s ease-in-out"
+              opacity={isOpen ? 1 : 0}
+              transform={isOpen ? "translateX(0)" : "translateX(-100%)"}
+            >
               Surplus
             </Text>
           </Button>
@@ -161,7 +187,13 @@ export default function Sidebar(min: data) {
               </Text>
             }
           >
-            <Text ps="2" fontSize={"18"}>
+            <Text
+              ps="2"
+              fontSize={"18"}
+              transition="transform 0.3s, opacity 0.1s ease-in-out"
+              opacity={isOpen ? 1 : 0}
+              transform={isOpen ? "translateX(0)" : "translateX(-100%)"}
+            >
               Claim
             </Text>
           </Button>
@@ -179,11 +211,20 @@ export default function Sidebar(min: data) {
           colorScheme="red"
           justifyContent="left"
           size={"lg"}
+          transition={"width 1s ease-in-out 10s"}
         >
           <Text fontSize={"x-large"}>
             <PiSignOutLight />
           </Text>
-          <Text ps="2" fontSize={"18"}>
+          <Text
+            ps="2"
+            fontSize={"18"}
+            // w="inherit"
+            transition="transform 0.3s, opacity 0.1s ease-in-out"
+            opacity={isOpen ? 1 : 0}
+            transform={isOpen ? "translateX(0)" : "translateX(-100%)"} // Initial position
+            // hidden={isOpen ? false : true}
+          >
             Logout
           </Text>
         </Button>

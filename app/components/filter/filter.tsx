@@ -26,12 +26,14 @@ export default function Filter() {
 
   return (
     <Box
+      // flex={"1"}
       bgColor="white"
       borderRadius={"md"}
       border="1px"
       borderColor="gray.100"
-      w={"inherit"}
-      h="fit-content"
+      // w={"inherit"}
+      // maxW={"inherit"}
+      // h="fit-content"
       // maxW={[null, null, null, "50vw", "50vw", "83vw"]}
       //   h={"100px"}
       px="10px"
