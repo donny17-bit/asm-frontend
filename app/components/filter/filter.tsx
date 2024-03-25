@@ -26,9 +26,14 @@ type data = {
 };
 
 export default function Filter(data: data) {
+  //const filterData
+
+  // lanjut nnti dlu
   const isFilter = data.isFilter;
 
   const toggleFilter = data.toggleFilter;
+
+  const filterHandler = (e: React.ChangeEvent<HTMLInputElement>) => {};
 
   return (
     <Box
@@ -46,131 +51,146 @@ export default function Filter(data: data) {
       py="10px"
       transform={"height 1s ease-in-out"}
     >
-      <Flex justify={"space-between"}>
-        <Text
-          textAlign={"center"}
-          fontSize={"20"}
-          fontWeight={"semibold"}
-          ps="10px"
-          pt="5px"
-        >
-          Filter
-        </Text>
-        <IconButton
-          onClick={toggleFilter}
-          me="10px"
-          variant={"ghost"}
-          isRound={true}
-          aria-label="Search database"
-          icon={<IoIosArrowDown />}
-          size="md"
-          _hover={{ color: "#FE5E37", bgColor: "gray.200" }}
-          _active={{ color: "#FE5E37", bgColor: "gray.200" }}
-          transform={isFilter ? "rotate(0deg)" : "rotate(180deg)"}
-        />
-      </Flex>
-      {isFilter ? (
-        <>
-          <FormControl>
-            <Flex h="fit-content">
-              <Box
-                // border={"1px"}
-                borderColor="gray.300"
-                borderRadius="lg"
-                flex="1"
-                p="10px"
-              >
-                <FormLabel>Periode</FormLabel>
-                <Flex>
+      <form onSubmit={filterHandler}>
+        <Flex justify={"space-between"}>
+          <Flex>
+            <Text
+              textAlign={"center"}
+              fontSize={"20"}
+              fontWeight={"semibold"}
+              ps="10px"
+              pt="5px"
+            >
+              Filter
+            </Text>
+            {/* nnti diganti posisinya */}
+            <Button
+              mt="1"
+              ms="10"
+              variant={"solid"}
+              size="sm"
+              colorScheme={"teal"}
+              type="submit"
+            >
+              Apply filter
+            </Button>
+          </Flex>
+          <IconButton
+            onClick={toggleFilter}
+            me="10px"
+            variant={"ghost"}
+            isRound={true}
+            aria-label="Search database"
+            icon={<IoIosArrowDown />}
+            size="md"
+            _hover={{ color: "#FE5E37", bgColor: "gray.200" }}
+            _active={{ color: "#FE5E37", bgColor: "gray.200" }}
+            transform={isFilter ? "rotate(0deg)" : "rotate(180deg)"}
+          />
+        </Flex>
+        {isFilter ? (
+          <>
+            <FormControl>
+              <Flex h="fit-content">
+                <Box
+                  // border={"1px"}
+                  borderColor="gray.300"
+                  borderRadius="lg"
+                  flex="1"
+                  p="10px"
+                >
+                  <FormLabel>Periode</FormLabel>
+                  <Flex>
+                    <Input
+                      flex="2"
+                      type="date"
+                      size="sm"
+                      variant="outline"
+                      borderRadius="lg"
+                      borderColor="gray.300"
+                    />
+                    <Text
+                      textAlign="center"
+                      pt="2px"
+                      mx="5px"
+                      fontWeight={"semibold"}
+                    >
+                      s/d
+                    </Text>
+                    <Input
+                      flex="2"
+                      type="date"
+                      size="sm"
+                      variant={"outline"}
+                      borderRadius="lg"
+                      borderColor="gray.300"
+                    />
+                  </Flex>
+                  <FormLabel mt="10px">Tipe</FormLabel>
+                  <Select size="sm" borderRadius={"lg"} borderColor="gray.300">
+                    <option value="detail">Detail</option>
+                    <option value="summary">Summary</option>
+                  </Select>
+                </Box>
+                <Center h="150px">
+                  <Divider orientation="vertical" borderColor={"gray.300"} />
+                </Center>
+                <Box
+                  // border={"1px"}
+                  borderColor="gray.300"
+                  borderRadius="lg"
+                  flex="1"
+                  p="10px"
+                  mx="5px"
+                >
+                  <FormLabel>Business Source</FormLabel>
                   <Input
-                    flex="2"
-                    type="date"
+                    type="email"
                     size="sm"
                     variant="outline"
-                    borderRadius="lg"
-                    borderColor="gray.300"
+                    borderRadius={"lg"}
                   />
-                  <Text
-                    textAlign="center"
-                    pt="2px"
-                    mx="5px"
-                    fontWeight={"semibold"}
-                  >
-                    s/d
-                  </Text>
-                  <Input
-                    flex="2"
-                    type="date"
-                    size="sm"
-                    variant={"outline"}
-                    borderRadius="lg"
-                    borderColor="gray.300"
-                  />
-                </Flex>
-                <FormLabel mt="10px">Tipe</FormLabel>
-                <Select size="sm" borderRadius={"lg"} borderColor="gray.300">
-                  <option value="detail">Detail</option>
-                  <option value="summary">Summary</option>
-                </Select>
-              </Box>
-              <Center h="150px">
-                <Divider orientation="vertical" borderColor={"gray.300"} />
-              </Center>
-              <Box
-                // border={"1px"}
-                borderColor="gray.300"
-                borderRadius="lg"
-                flex="1"
-                p="10px"
-                mx="5px"
-              >
-                <FormLabel>Business Source</FormLabel>
-                <Input
-                  type="email"
-                  size="sm"
-                  variant="outline"
-                  borderRadius={"lg"}
-                />
-                <FormLabel mt="10px">Business Class</FormLabel>
-                <Input type="email" size="sm" borderRadius={"lg"} />
-              </Box>
-              <Center h="150px">
-                <Divider orientation="vertical" borderColor={"gray.300"} />
-              </Center>
-              <Box
-                // border={"1px"}
-                borderColor="gray.300"
-                borderRadius="lg"
-                flex="1"
-                p="10px"
-                me={"5px"}
-              >
-                <FormLabel>Branch</FormLabel>
-                <Input type="email" size="sm" borderRadius={"lg"} />
-                <FormLabel mt="10px">Client Name</FormLabel>
-                <Input type="email" size="sm" borderRadius={"lg"} />
-              </Box>
-              <Center h="150px">
-                <Divider orientation="vertical" borderColor={"gray.300"} />
-              </Center>
-              <Box
-                // border={"1px"}
-                borderColor="gray.300"
-                borderRadius="lg"
-                flex="1"
-                p="10px"
-              >
-                <FormLabel>No Polis</FormLabel>
-                <Input type="email" size="sm" borderRadius={"lg"} />
-                <FormLabel mt="10px">No Cif</FormLabel>
-                <Input type="email" size="sm" borderRadius={"lg"} />
-              </Box>
-            </Flex>
-          </FormControl>
-        </>
-      ) : (
-        <></>
-      )}
+                  <FormLabel mt="10px">Business Class</FormLabel>
+                  <Input type="email" size="sm" borderRadius={"lg"} />
+                </Box>
+                <Center h="150px">
+                  <Divider orientation="vertical" borderColor={"gray.300"} />
+                </Center>
+                <Box
+                  // border={"1px"}
+                  borderColor="gray.300"
+                  borderRadius="lg"
+                  flex="1"
+                  p="10px"
+                  me={"5px"}
+                >
+                  <FormLabel>Branch</FormLabel>
+                  <Input type="email" size="sm" borderRadius={"lg"} />
+                  <FormLabel mt="10px">Client Name</FormLabel>
+                  <Input type="email" size="sm" borderRadius={"lg"} />
+                </Box>
+                <Center h="150px">
+                  <Divider orientation="vertical" borderColor={"gray.300"} />
+                </Center>
+                <Box
+                  // border={"1px"}
+                  borderColor="gray.300"
+                  borderRadius="lg"
+                  flex="1"
+                  p="10px"
+                >
+                  <FormLabel>No Polis</FormLabel>
+                  <Input type="email" size="sm" borderRadius={"lg"} />
+                  <FormLabel mt="10px">No Cif</FormLabel>
+                  <Input type="email" size="sm" borderRadius={"lg"} />
+                </Box>
+              </Flex>
+            </FormControl>
+          </>
+        ) : (
+          <></>
+        )}
+      </form>
     </Box>
   );
 }

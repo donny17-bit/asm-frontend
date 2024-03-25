@@ -1,39 +1,32 @@
 import axios from "axios";
-import { log } from "console";
 
 const axiosApiInstance = axios.create({
-  // baseURL: "process.env.URL_BACKEND",
-  baseURL: "127.0.0.1:8080/",
+  baseURL: "http://127.0.0.1:8080/",
+  withCredentials: true,
+  // headers: {
+  //   "Access-Control-Allow-Origin": "http://127.0.0.1:8080/",
+  //   "Access-Control-Allow-Credentials": "true",
+  //   "Access-Control-Allow-Methods": "POST, OPTIONS, GET, PUT",
+  //   "Access-Control-Allow-Headers":
+  //     "Content-Type, Signature, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization, accept, origin, Cache-Control, X-Requested-With",
+  //   "Content-Type": "application/json",
+  // },
 });
 
-// const axiosApiInstance = axios;
-//localhost:3000/127.0.0.1:8080/api/login
+// axiosApiInstance.defaults.headers.post["Content-Type"] =
+//   "application/x-www-form-urlencoded";
+// axiosApiInstance.defaults.baseURL = "http://127.0.0.1:8080/";
+
 // Add a request interceptor
 axiosApiInstance.interceptors.request.use(
   function (config) {
-    // Do something before request is sent
-    // config.headers.set(
-    //   "Authorization",
-    //   `Bearer ${Cookies.get("access_token")}`,
-    // );
-
-    config.headers.set("Access-Control-Allow-Origin", "*");
-    // config.headers.set(
-    //   "Access-Control-Allow-Methods",
-    //   "GET, POST, PUT, DELETE, OPTIONS"
-    // );
-    // config.headers.set(
-    //   "Access-Control-Allow-Headers",
-    //   "Content-Type, Authorization"
-    // );
-
-    // config.headers = {
-    //   Authorization: `Bearer ${Cookies.get("token")}`,
-    // };
+    // config.headers.set("withCredentials", "true");
+    // config.headers.set("Access-Control-Allow-Origin", "http://127.0.0.1:8080/");
     return config;
   },
   function (error) {
-    // Do something with request error
+    // Do something with request erro
+    console.log("error in request axios");
     return Promise.reject(error);
   }
 );
@@ -41,9 +34,19 @@ axiosApiInstance.interceptors.request.use(
 // Add a response interceptor
 axiosApiInstance.interceptors.response.use(
   function (response) {
+    console.log("response : ", response);
+
+    const setCookieHeader = response.headers.get("Set-Cookies");
+    console.log("cookie  : ", setCookieHeader);
+    if (setCookieHeader) {
+      // Parse the Set-Cookie header and handle the cookies
+      console.log("Set-Cookie header:", setCookieHeader);
+    }
     // Any status code that lie within the range of 2xx cause this function to trigger
     // Do something with response data
     // response.headers.set("Access-Control-Allow-Origin", "*");
+    // console.log(response);
+
     return response;
   },
   function (error) {
@@ -71,7 +74,7 @@ axiosApiInstance.interceptors.response.use(
     //   }
     // }
 
-    console.log("error in axios");
+    console.log("error in response axios");
 
     return Promise.reject(error);
   }

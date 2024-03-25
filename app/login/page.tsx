@@ -1,7 +1,11 @@
 "use client";
 
+import { parseCookies } from "nookies";
 import { useState } from "react";
-import { getCookie } from "cookies-next";
+// import { getCookie } from "cookies-next";
+import axios from "../utils/axios";
+// import axios from "axios";
+// import Link from "next/link";
 
 import {
   Box,
@@ -21,7 +25,7 @@ import {
 } from "@chakra-ui/react";
 
 export default function Login() {
-  const cookie = getCookie("test"); // for example
+  // const cookie = getCookie("session"); // for example
 
   const [form, setForm] = useState({
     nik: "",
@@ -39,14 +43,28 @@ export default function Login() {
   const submitHandler = async (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
 
+    // case sensitive
     console.log("nik : ", form.nik);
     console.log("password : ", form.password);
-    // const result = LoginApi(form);
-    const result = await fetch("api/auth", {
-      method: "post",
-      body: JSON.stringify(form),
+
+    const { data, headers } = await axios.post("/api/login", form, {
+      withCredentials: true,
     });
-    console.log(result);
+    // console.log(data);
+    // console.log(headers);
+  };
+
+  const prodBtn = async () => {
+    const { data, headers } = await axios.get("/api/business-source?lvl=3", {
+      withCredentials: true,
+    });
+    console.log(data);
+    console.log(headers);
+    // const allCookies = document.cookie;
+
+    // const cookies = parseCookies();
+    // const myCookieValue = cookies.myCookieName;
+    // console.log(allCookies);
   };
 
   return (
@@ -103,7 +121,16 @@ export default function Login() {
                   >
                     Login
                   </Button>
-                  <Link href="#">
+                  <Button
+                    w="100%"
+                    colorScheme="teal"
+                    borderColor="gray.400"
+                    border="1px"
+                    onClick={() => prodBtn()}
+                  >
+                    prod
+                  </Button>
+                  <Link href="/dash">
                     <Text color="blue.500" fontSize="sm">
                       Forgot Password
                     </Text>
