@@ -41,12 +41,28 @@ export default function Login() {
 
     console.log("nik : ", form.nik);
     console.log("password : ", form.password);
-    // const result = LoginApi(form);
     const result = await fetch("api/auth", {
       method: "post",
       body: JSON.stringify(form),
-    });
-    console.log(result);
+    })
+      .then((response) => response.json())
+      .then((data) => console.log("data : ", data));
+
+    // console.log(result.json());
+  };
+
+  const prodBtn = async () => {
+    // const { data, headers } = await axios.get("/api/business-source?lvl=3", {
+    //   withCredentials: true,
+    // });
+    // console.log(data);
+    // console.log(headers);
+    // const cookieStore = cookies();
+    // const session = cookieStore.get("session");
+    // const allCookies = document.cookie;
+    // const cookies = parseCookies();
+    // const myCookieValue = cookies.myCookieName;
+    // console.log(allCookies);
   };
 
   return (
@@ -103,7 +119,16 @@ export default function Login() {
                   >
                     Login
                   </Button>
-                  <Link href="#">
+                  <Button
+                    w="100%"
+                    colorScheme="teal"
+                    borderColor="gray.400"
+                    border="1px"
+                    onClick={() => prodBtn()}
+                  >
+                    cek cookie
+                  </Button>
+                  <Link href="/dash">
                     <Text color="blue.500" fontSize="sm">
                       Forgot Password
                     </Text>

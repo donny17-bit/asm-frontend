@@ -3,21 +3,13 @@ import { log } from "console";
 
 const axiosApiInstance = axios.create({
   // baseURL: "process.env.URL_BACKEND",
-  baseURL: "127.0.0.1:8080/",
+  baseURL: "http://127.0.0.1:8080",
 });
 
-// const axiosApiInstance = axios;
-//localhost:3000/127.0.0.1:8080/api/login
 // Add a request interceptor
 axiosApiInstance.interceptors.request.use(
   function (config) {
-    // Do something before request is sent
-    // config.headers.set(
-    //   "Authorization",
-    //   `Bearer ${Cookies.get("access_token")}`,
-    // );
-
-    config.headers.set("Access-Control-Allow-Origin", "*");
+    // config.headers.set("Access-Control-Allow-Origin", "*");
     // config.headers.set(
     //   "Access-Control-Allow-Methods",
     //   "GET, POST, PUT, DELETE, OPTIONS"
