@@ -35,26 +35,48 @@ export default function Filter(data: data) {
     const { value } = e.target;
 
     console.log("begin date value : ", value);
+
     setBeginDate(value);
   };
 
   const changeEndDate = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
 
-    console.log("end date value : ", value);
     setEndDate(value);
+    console.log("end date in value : ", value);
   };
 
   const filterHandler = async (e: any) => {
     e.preventDefault();
 
-    const result = await fetch("api/production", {
-      method: "get",
-    })
+    // convert date format to DDMMYYYY
+    const bDateObj = new Date(beginDate);
+    const eDateObj = new Date(endDate);
+
+    // Extract day, month, and year from the Date object
+    const dayBegin = String(bDateObj.getDate()).padStart(2, "0");
+    const monthBegin = String(bDateObj.getMonth() + 1).padStart(2, "0"); // Months are 0-based
+    const yearBegin = String(bDateObj.getFullYear());
+
+    const dayEnd = String(eDateObj.getDate()).padStart(2, "0");
+    const monthEnd = String(eDateObj.getMonth() + 1).padStart(2, "0"); // Months are 0-based
+    const yearEnd = String(eDateObj.getFullYear());
+
+    // change the format to YYYYMMDD
+    const beginDateStr = `${yearBegin}${monthBegin}${dayBegin}`;
+    const endDateStr = `${yearEnd}${monthEnd}${dayEnd}`;
+
+    const result = await fetch(
+      `api/production?ldc_id=125&page=1&page_size=10&sort=asc&order=thnbln, client_name&begin_date=${beginDateStr}&end_date=${endDateStr}`,
+      {
+        method: "get",
+      }
+    )
       .then((response) => response.json())
       .then((data) => {
         return data;
-      });
+      })
+      .catch((error) => console.log("error : ", error));
 
     console.log(result);
   };
@@ -128,6 +150,7 @@ export default function Filter(data: data) {
                   <Input
                     flex="2"
                     type="date"
+                    placeholder="dd-mm-yyyy"
                     value={beginDate}
                     size="sm"
                     variant="outline"
