@@ -1,6 +1,12 @@
 "use client";
 
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  setUserData,
+  setLoading,
+  setError,
+} from "../store/reducer/userReducer";
 // import { getCookie } from "cookies-next"; --> nnti dihapus/uninstall
 import { useRouter } from "next/navigation";
 
@@ -21,8 +27,27 @@ import {
   Spacer,
 } from "@chakra-ui/react";
 
+interface dataLogin {
+  cabang: string;
+  divisi: string;
+  message: string;
+  nik: string;
+  status: string;
+}
+
+interface UserState {
+  userData: dataLogin | null;
+  loading: boolean;
+  error: string | null;
+}
+
+console.log("setUserData", setUserData);
+
 export default function Login() {
   const router = useRouter();
+
+  const dispatch = useDispatch();
+  const userState = useSelector((state: { user: UserState }) => state.user);
 
   const [form, setForm] = useState({
     nik: "",
@@ -42,6 +67,9 @@ export default function Login() {
 
     console.log("nik : ", form.nik);
     console.log("password : ", form.password);
+
+    dispatch(setLoading(true));
+
     const result = await fetch("api/auth", {
       method: "post",
       body: JSON.stringify(form),
@@ -49,14 +77,18 @@ export default function Login() {
       .then((response) => response.json())
       .then((data) => {
         return data;
-      });
+      })
+      .catch((error) => dispatch(setError(error.message)));
+
+    dispatch(setUserData(result.data));
+    dispatch(setLoading(false));
 
     localStorage.setItem("nik", result.data.nik);
     localStorage.setItem("cabang", result.data.cabang);
 
     if (result.data.message == "Login successful") {
       // nnti diganti
-      router.push("/");
+      router.push("/dash"); // to check reducer
     } else {
       alert(`login gagal : ${result.data.message}`);
     }
