@@ -1,5 +1,5 @@
 import axios from "axios";
-import { log } from "console";
+// import { log } from "console";
 
 const axiosApiInstance = axios.create({
   // baseURL: "process.env.URL_BACKEND",
@@ -9,6 +9,12 @@ const axiosApiInstance = axios.create({
 // Add a request interceptor
 axiosApiInstance.interceptors.request.use(
   function (config) {
+    // if (sessionCookie == undefined) {
+    //   config.headers.set("cookie", "");
+    // } else {
+    //   config.headers.set("cookie", `session=${sessionCookie.value}`);
+    // }
+
     // config.headers.set("Access-Control-Allow-Origin", "*");
     // config.headers.set(
     //   "Access-Control-Allow-Methods",

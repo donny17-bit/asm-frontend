@@ -11,6 +11,8 @@ export async function POST(request: any) {
   const sessionCookie = cookieStore.get("session");
   const form = await request.json();
 
+  console.log(sessionCookie);
+
   // const res = new NextResponse();
 
   var headersValue: any;
@@ -25,8 +27,6 @@ export async function POST(request: any) {
     const result = await axios.post("/api/login", form, {
       headers: headersValue,
     });
-
-    console.log("result : ", result.data);
 
     const session = result.headers["set-cookie"]?.[0];
 

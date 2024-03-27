@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { getCookie } from "cookies-next";
+// import { getCookie } from "cookies-next"; --> nnti dihapus/uninstall
+import { useRouter } from "next/navigation";
 
 import {
   Box,
@@ -21,7 +22,7 @@ import {
 } from "@chakra-ui/react";
 
 export default function Login() {
-  const cookie = getCookie("test"); // for example
+  const router = useRouter();
 
   const [form, setForm] = useState({
     nik: "",
@@ -46,9 +47,20 @@ export default function Login() {
       body: JSON.stringify(form),
     })
       .then((response) => response.json())
-      .then((data) => console.log("data : ", data));
+      .then((data) => {
+        return data;
+      });
 
-    // console.log(result.json());
+    localStorage.setItem("nik", result.data.nik);
+    localStorage.setItem("cabang", result.data.cabang);
+
+    if (result.data.message == "Login successful") {
+      // nnti diganti
+      router.push("/");
+    } else {
+      alert(`login gagal : ${result.data.message}`);
+    }
+    console.log(result);
   };
 
   const prodBtn = async () => {

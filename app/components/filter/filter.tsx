@@ -26,8 +26,40 @@ type data = {
 };
 
 export default function Filter(data: data) {
-  const isFilter = data.isFilter;
+  const [beginDate, setBeginDate] = useState("");
+  const [endDate, setEndDate] = useState("");
+  const [page, setPage] = useState(1); // nnti diganti jadi sesuai filter di component production
+  const [pageSize, setPageSize] = useState(100); // nnti diganti jadi sesuai filter di component production
 
+  const changeBeginDate = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = e.target;
+
+    console.log("begin date value : ", value);
+    setBeginDate(value);
+  };
+
+  const changeEndDate = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = e.target;
+
+    console.log("end date value : ", value);
+    setEndDate(value);
+  };
+
+  const filterHandler = async (e: any) => {
+    e.preventDefault();
+
+    const result = await fetch("api/production", {
+      method: "get",
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        return data;
+      });
+
+    console.log(result);
+  };
+
+  const isFilter = data.isFilter;
   const toggleFilter = data.toggleFilter;
 
   return (
@@ -47,21 +79,32 @@ export default function Filter(data: data) {
       transform={"height 1s ease-in-out"}
     >
       <Flex justify={"space-between"}>
-        <Text
-          textAlign={"center"}
-          fontSize={"20"}
-          fontWeight={"semibold"}
-          ps="10px"
-          pt="5px"
-        >
-          Filter
-        </Text>
+        <Flex>
+          <Text
+            textAlign={"center"}
+            fontSize={"20"}
+            fontWeight={"semibold"}
+            ps="10px"
+            pt="5px"
+          >
+            Filter
+          </Text>
+          <Button
+            ms="10"
+            size="sm"
+            mt="1"
+            variant="solid"
+            onClick={(e) => filterHandler(e)}
+          >
+            Apply Filter
+          </Button>
+        </Flex>
         <IconButton
           onClick={toggleFilter}
           me="10px"
           variant={"ghost"}
           isRound={true}
-          aria-label="Search database"
+          aria-label="minimize=btn"
           icon={<IoIosArrowDown />}
           size="md"
           _hover={{ color: "#FE5E37", bgColor: "gray.200" }}
@@ -85,10 +128,12 @@ export default function Filter(data: data) {
                   <Input
                     flex="2"
                     type="date"
+                    value={beginDate}
                     size="sm"
                     variant="outline"
                     borderRadius="lg"
                     borderColor="gray.300"
+                    onChange={changeBeginDate}
                   />
                   <Text
                     textAlign="center"
@@ -101,6 +146,8 @@ export default function Filter(data: data) {
                   <Input
                     flex="2"
                     type="date"
+                    value={endDate}
+                    onChange={changeEndDate}
                     size="sm"
                     variant={"outline"}
                     borderRadius="lg"
