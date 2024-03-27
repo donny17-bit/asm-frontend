@@ -1,6 +1,13 @@
 "use client";
 
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  setData,
+  setLoading,
+  setError,
+} from "../../store/reducer/prodLtReducer";
+import { selectProdLt } from "../../store/reducer/prodLtReducer";
 
 import {
   Text,
@@ -26,6 +33,9 @@ type data = {
 };
 
 export default function Filter(data: data) {
+  const dispatch = useDispatch();
+  const userState = useSelector(selectProdLt);
+
   const [beginDate, setBeginDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const [page, setPage] = useState(1); // nnti diganti jadi sesuai filter di component production
@@ -66,6 +76,7 @@ export default function Filter(data: data) {
     const beginDateStr = `${yearBegin}${monthBegin}${dayBegin}`;
     const endDateStr = `${yearEnd}${monthEnd}${dayEnd}`;
 
+    dispatch(setLoading(true));
     const result = await fetch(
       `api/production?ldc_id=125&page=1&page_size=10&sort=asc&order=thnbln, client_name&begin_date=${beginDateStr}&end_date=${endDateStr}`,
       {
@@ -76,7 +87,10 @@ export default function Filter(data: data) {
       .then((data) => {
         return data;
       })
-      .catch((error) => console.log("error : ", error));
+      .catch((error) => dispatch(setError(error.message)));
+
+    dispatch(setData(result.data));
+    dispatch(setLoading(false));
 
     console.log(result);
   };

@@ -88,7 +88,7 @@ export default function Login() {
 
     if (result.data.message == "Login successful") {
       // nnti diganti
-      router.push("/dash"); // to check reducer
+      router.push("/"); // to check reducer
     } else {
       alert(`login gagal : ${result.data.message}`);
     }
